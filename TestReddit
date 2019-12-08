@@ -1,0 +1,46 @@
+def stringToList(s):
+    lista=[]
+    for i in range(0,len(s)):
+        lista.append(s[i])
+    return lista
+
+def uniqueList(lista):
+    uniqueList=[]
+    set1=set(lista)
+    for s in set1:
+        uniqueList.append(s)
+    return uniqueList    
+
+def countItems(stringList,uniqueList):
+    counts=[]
+    for e in uniqueList:
+        n=0
+        for j in stringList:
+            if e==j:
+                n=n+1
+        counts.append(n)
+    return counts
+
+def check(countItems,k):
+    bool=True
+    for e in countItems:
+        if e!=k:
+            bool=False
+            return bool
+    return bool
+       
+def numOfPerfect(s,k):
+    numsPerf=[]
+    lista=stringToList(s)
+    for i in range(0,len(s)-k):
+        for j in range(i+k,len(s)):
+                subList=lista[i:j]
+                uniqueList1=uniqueList(subList)
+                countItems1=countItems(subList,uniqueList1)
+                check1=check(countItems1,k)
+                if check1:
+                    #numsPerf.append(s[i:j])
+                    print (s[i:j])
+    return len(numsPerf)
+
+numOfPerfect("1230201230123012312312312312344552312031230123123123",2)
